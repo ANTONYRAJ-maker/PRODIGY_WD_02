@@ -5,20 +5,16 @@
     font-family:Arial, Helvetica, sans-serif;
 }
 
-body{
-
-    height:100vh;
-
-    display:flex;
-    justify-content:center;
-    align-items:center;
 body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
     background: url("background.jpg") no-repeat center center;
     background-size: cover;
 }
-    
-}
-
 .container{
 
     width:600px;
