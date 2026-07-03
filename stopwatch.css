@@ -12,9 +12,11 @@ body{
     display:flex;
     justify-content:center;
     align-items:center;
-
-    background:url("images/background.jpg") center center/cover no-repeat;
-
+body {
+    background: url("background.jpg") no-repeat center center;
+    background-size: cover;
+}
+    
 }
 
 .container{
