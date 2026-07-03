@@ -1,82 +1,80 @@
-let seconds = 0;
-let minutes = 0;
-let hours = 0;
+let min = 0;
+let sec = 0;
+let ms = 0;
 
 let timer = null;
+let lapNumber = 1;
 
-const display = document.getElementById("display");
-const laps = document.getElementById("laps");
+function stopwatch() {
 
-function updateDisplay(){
+    ms++;
 
-let h = String(hours).padStart(2,"0");
-let m = String(minutes).padStart(2,"0");
-let s = String(seconds).padStart(2,"0");
+    if (ms == 100) {
+        ms = 0;
+        sec++;
+    }
 
-display.innerHTML = `${h}:${m}:${s}`;
+    if (sec == 60) {
+        sec = 0;
+        min++;
+    }
 
-}
+    let m = min < 10 ? "0" + min : min;
+    let s = sec < 10 ? "0" + sec : sec;
+    let milli = ms < 10 ? "0" + ms : ms;
 
-function runStopwatch(){
-
-seconds++;
-
-if(seconds==60){
-seconds=0;
-minutes++;
-}
-
-if(minutes==60){
-minutes=0;
-hours++;
-}
-
-updateDisplay();
+    document.getElementById("display").innerHTML =
+        `${m}:${s}:${milli}`;
 
 }
 
-document.getElementById("start").onclick=function(){
+function startWatch() {
 
-if(timer!==null)return;
+    if (timer !== null)
+        clearInterval(timer);
 
-timer=setInterval(runStopwatch,1000);
+    timer = setInterval(stopwatch, 10);
 
-};
+}
 
-document.getElementById("pause").onclick=function(){
+function pauseWatch() {
 
-clearInterval(timer);
+    clearInterval(timer);
 
-timer=null;
+}
 
-};
+function resetWatch() {
 
-document.getElementById("reset").onclick=function(){
+    clearInterval(timer);
 
-clearInterval(timer);
+    min = 0;
+    sec = 0;
+    ms = 0;
 
-timer=null;
+    lapNumber = 1;
 
-seconds=0;
-minutes=0;
-hours=0;
+    document.getElementById("display").innerHTML = "00:00:00";
 
-updateDisplay();
+    document.getElementById("laps").innerHTML = "";
 
-laps.innerHTML="";
+}
 
-};
+function lapTime() {
 
-document.getElementById("lap").onclick=function(){
+    if (min == 0 && sec == 0 && ms == 0)
+        return;
 
-if(timer==null)return;
+    let time = document.getElementById("display").innerHTML;
 
-let li=document.createElement("li");
+    let li = document.createElement("li");
 
-li.innerHTML=display.innerHTML;
+    li.innerHTML = `
+    <span>Lap ${lapNumber}</span>
+    <span>${time}</span>
+    `;
 
-laps.appendChild(li);
+    document.getElementById("laps").prepend(li);
 
-};
+    lapNumber++;
 
-updateDisplay();
+}
