@@ -1,37 +1,67 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Stopwatch</title>
-<link rel="stylesheet" href="stopwatch.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stopwatch Web Application</title>
+
+    <link rel="stylesheet" href="stopwatch.css">
+
+    <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 
 <body>
 
 <div class="container">
 
-<h1>⏱ Stopwatch</h1>
+    <h1>
+        <i class="fa-regular fa-clock"></i>
+        STOPWATCH
+    </h1>
 
-<div id="display">
-00:00:00
-</div>
+    <div id="display">00:00:00</div>
 
-<div class="buttons">
+    <div class="labels">
+        <span>MIN</span>
+        <span>SEC</span>
+        <span>MS</span>
+    </div>
 
-<button id="start">Start</button>
+    <div class="buttons">
 
-<button id="pause">Pause</button>
+        <button id="start" onclick="startWatch()">
+            <i class="fa-solid fa-play"></i>
+            <span>START</span>
+        </button>
 
-<button id="reset">Reset</button>
+        <button id="pause" onclick="pauseWatch()">
+            <i class="fa-solid fa-pause"></i>
+            <span>PAUSE</span>
+        </button>
 
-<button id="lap">Lap</button>
+        <button id="reset" onclick="resetWatch()">
+            <i class="fa-solid fa-rotate-left"></i>
+            <span>RESET</span>
+        </button>
 
-</div>
+        <button id="lap" onclick="lapTime()">
+            <i class="fa-solid fa-flag"></i>
+            <span>LAP</span>
+        </button>
 
-<h2>Lap Times</h2>
+    </div>
 
-<ul id="laps"></ul>
+    <div class="lap-section">
+
+        <h2>
+            <i class="fa-regular fa-clock"></i>
+            LAP TIMES
+        </h2>
+
+        <ul id="laps"></ul>
+
+    </div>
 
 </div>
 
